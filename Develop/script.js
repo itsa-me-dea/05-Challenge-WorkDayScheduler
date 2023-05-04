@@ -59,7 +59,7 @@ $(document).ready(function(){
       if (i > currentDate) {
         $(currentCard).removeClass('past').addClass('future');
         
-      } else if (i === currentDate) {
+      } else if (i == currentDate) {
         $(currentCard).removeClass('past').addClass('present');
       
       } else {
@@ -70,6 +70,28 @@ $(document).ready(function(){
     console.log('Yesterday is history, Tomorrow is a mystery, but Today is a gift. That is why it is called the present. - Oogway')
 
     // TODO: Add code to get any user input that was saved in localStorage and set the values of the corresponding textarea elements. HINT: How can the id attribute of each time-block be used to do this?
+    function keepText(currentCard) {
+      
+      for (i = 9; i < 18; i++) {
+        var currentKey = 'hour-' + i;
+        var currentCard = '#hour-' + i;
+        var test = $(currentCard).children('textarea').val();
+
+        console.log(currentKey);
+        var localText = JSON.parse(window.localStorage.getItem(currentKey));
+
+        var test2 = $(currentCard).children('textarea').textContent = localText;
+        
+        console.log(test);
+        console.log(localText);
+        console.log(test2);
+        
+      };
+      
+      // return localText;
+    }
+
+    keepText();
     
     // TODO: Add code to display the current date in the header of the page. (https://stackoverflow.com/questions/39418405/making-a-live-clock-in-javascript)
     // https://day.js.org/docs/en/display/format
