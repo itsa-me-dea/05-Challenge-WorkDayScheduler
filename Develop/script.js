@@ -37,9 +37,9 @@ $(document).ready(function(){
     saveButtonEl.on("click", function (event) {
       event.preventDefault();
 
-      var textInput = $(this).parent().attr('id');
-      var textVal = $(this).siblings('textarea').val();
-      localStorage.setItem(textInput, textVal);
+      var textBox = $(this).parent().attr('id');
+      var text = $(this).siblings('textarea').val();
+      localStorage.setItem(textBox, text);
       // var keep = localStorage.getItem(textInput);
       // $(this).siblings('textarea').text(keep);
     });
