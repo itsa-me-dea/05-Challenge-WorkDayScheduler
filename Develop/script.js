@@ -75,16 +75,16 @@ $(document).ready(function(){
       for (i = 9; i < 18; i++) {
         var currentKey = 'hour-' + i;
         var currentCard = '#hour-' + i;
-        var test = $(currentCard).children('textarea').val();
+        // var test = $(currentCard).children('textarea').val();
 
-        console.log(currentKey);
-        var localText = JSON.parse(window.localStorage.getItem(currentKey));
+        // console.log(currentKey);
+        var localText = window.localStorage.getItem(currentKey);
 
-        var test2 = $(currentCard).children('textarea').textContent = localText;
+        var savedText = $(currentCard).children('textarea').append(localText);
         
-        console.log(test);
-        console.log(localText);
-        console.log(test2);
+        // console.log('test: ' + test);
+        // console.log('localText: ' + localText);
+        // console.log('savedText: ' + savedText);
         
       };
       
