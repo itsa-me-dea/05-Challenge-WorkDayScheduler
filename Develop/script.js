@@ -10,10 +10,7 @@ $(document).ready(function(){
     var textareaEl = $('textarea');
     var timeblockEl = $('.time-block');
     var hourEl = $('.hour');
-    
-    // Click event causes alert "Hello World"
-    // Vanilla JS equivalent: `addEventListener`
-    
+     
     // saveButtonEl.on('click', function () {
     //   // window.localStorage.setItem('content', 'test');
     //   // $('textarea').html(window.localStorage.getItem('content'));
@@ -23,19 +20,30 @@ $(document).ready(function(){
     // });
 
     // https://embed.plnkr.co/rbpDg4gf0QwgQZGvRMrG
-    saveButtonEl.on('click', function () {
-      // template data
-      var todo = textareaEl.val();
-      // var data = '<h3>' + name + '</h3>' + '<p>' + story + '</p>';         
-       localStorage.mydata = todo;   
-       // convert to html
-       todo.html(localStorage.mydata);
-      // view in console
-      console.log(localStorage.mydata);
-      // sucess 
-      return false;
+    // saveButtonEl.on('click', function () {
+    //   // template data
+    //   var todo = textareaEl.val();
+    //   // var data = '<h3>' + name + '</h3>' + '<p>' + story + '</p>';         
+    //    localStorage.mydata = todo;   
+    //    // convert to html
+    //    todo.html(localStorage.mydata);
+    //   // view in console
+    //   console.log(localStorage.mydata);
+    //   // sucess 
+    //   return false;
+    // });
+  
+    // https://stackoverflow.com/questions/10260667/jquery-get-parent-parent-id
+    saveButtonEl.on("click", function (event) {
+      event.preventDefault();
+
+      var textInput = $(this).parent().attr('id');
+      var textVal = $(this).siblings('textarea').val();
+      localStorage.setItem(textInput, textVal);
+      // var keep = localStorage.getItem(textInput);
+      // $(this).siblings('textarea').text(keep);
     });
-    
+
     // TODO: Add code to apply the past, present, or future class to each time block by comparing the id to the current hour. HINTS: How can the id attribute of each time-block be used to conditionally add or remove the past, present, and future classes? How can Day.js be used to get the current hour in 24-hour time?
     var currentDate = dayjs().format('H');
     console.log('Military time: ' + currentDate)
@@ -64,9 +72,10 @@ $(document).ready(function(){
     // TODO: Add code to get any user input that was saved in localStorage and set the values of the corresponding textarea elements. HINT: How can the id attribute of each time-block be used to do this?
     
     // TODO: Add code to display the current date in the header of the page. (https://stackoverflow.com/questions/39418405/making-a-live-clock-in-javascript)
+    // https://day.js.org/docs/en/display/format
     function time() {
       var today = dayjs();
-      $('#currentDay').text(today.format('MMM D, YYYY, h:mm:ss a'));
+      $('#currentDay').text(today.format('dddd, MMM D, YYYY, h:mm:ss a'));
     }
     
     setInterval(time, 1000);
